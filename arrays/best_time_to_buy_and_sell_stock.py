@@ -14,6 +14,12 @@ class Solution:
 
         # if n is <= 1 then loop doesn't run anyway and curr_max_profit 0 is returned
         # loop left pointer until n - 2, but what if 2 elem only in prices then n - 2 will be 0
+        print(prices)
+        print(n - 2)
+
+        # because right pointer will eventually be much faster
+        # than left pointer when right is at last element or n-1
+        # make last calcs then loop will reach stop condition
         while right <= n - 1:
             profit = prices[right] - prices[left]
 
