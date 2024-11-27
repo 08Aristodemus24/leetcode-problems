@@ -13,11 +13,11 @@ class Solution:
         if length==1 or length==0:
             return head
 
-        k=k%length # optimize number of rotations
-        if k==0 or k==length:
+        k= k % length # optimize number of rotations
+        if k == 0 or k == length:
             return head
         
-        i=0
+        i = 0
         trav=None
         while i<length-k:
             if not trav:
@@ -41,4 +41,6 @@ def listlength(head):
         length+=1
         trav=trav.next
     return length
+
+
 
