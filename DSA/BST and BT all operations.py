@@ -5,15 +5,15 @@ import ast
 from sys import maxsize as MAX
 
 class Node:
-    def __init__(self,data=None):
-        self.data=data
-        self.leftc=None
-        self.rightc=None
+    def __init__(self, data=None):
+        self.data = data
+        self.leftc = None
+        self.rightc = None
 
 class Tree:
     def __init__(self):
-        self.root=None
-        self.COUNT=[10]
+        self.root = None
+        self.COUNT = [10]
         self.MAX = MAX
         self.MIN = -MAX - 1
 
@@ -31,12 +31,12 @@ class Tree:
         """
         if data >= root.data:
             if not root.rightc:
-                root.rightc=Node(data)
+                root.rightc = Node(data)
             else:
                 self._insert(root.rightc,data)
         else:
             if not root.leftc:
-                root.leftc=Node(data)
+                root.leftc = Node(data)
             else:
                 self._insert(root.leftc,data)
 
