@@ -26,7 +26,7 @@ class llist:
             print(trav.data,end=' ')
             trav=trav.next
 
-    def find(self,head,index):
+    def find(self, head, index):
         i=0
         trav=head
         while i<index:
@@ -34,7 +34,7 @@ class llist:
             i+=1
         return trav
 
-    def length(self,head):
+    def length(self, head):
         length=0
         trav=head
         while trav:
