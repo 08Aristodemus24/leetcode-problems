@@ -104,7 +104,7 @@ class Tree:
 
     def levelOrder(self):
         if self.root:
-            q_temp=queue.Queue(100)
+            q_temp=queue.Queue()
             stack=[]
 
             # enqueue the first element in the 
@@ -132,7 +132,7 @@ class Tree:
         
     def reverseLevelOrder(self):
         if self.root:
-            q_temp = queue.Queue(10)
+            q_temp = queue.Queue()
             stack = []
             root = self.root
 
@@ -258,6 +258,52 @@ class Tree:
                     length -= 1
             return cur_max
         
+    def search(self, key):
+        return self._search(self.root, key)
+
+    def _search(self, root, key):
+        if not root:
+            return -1
+        # a search in an AVL tree or balanced
+        # binary search tree will be faster
+
+        # searching will only take
+        # a number of comparisons as to an
+        # unbalanced binary search tree
+
+        # might take O(n) due to the
+        # linear manner of the representation
+        # of the nodes in the tree
+        
+        elif key == root.data:
+            return root
+        elif key >= root.data:
+            return self._search(root.rightc,key)
+        else:
+            return self._search(root.leftc,key)
+        
+    # def insert(self, data):
+    #     if not self.root:
+    #         self.root=Node(data)
+    #     else:
+    #         q_temp = queue.Queue(maxsize=0)
+    #         q_temp.put(self.root)
+
+    #         while True:
+    #             res = q_temp.get()
+
+    #             if not res.leftc:
+    #                 res.leftc = Node(data)
+    #                 break
+    #             else:
+    #                 q_temp.put(res.leftc)
+                
+    #             if not res.rightc:
+    #                 res.rightc=Node(data)
+    #                 break
+    #             else:
+    #                 q_temp.put(res.rightc)
+
     @property
     def maxNum(self):
         # this is if root is NULL
@@ -311,35 +357,35 @@ class Tree:
         return self.root
     
 
-        
-# problem:
-
-# method:
-
-# idea:
-# when first depth is found set it as the current max
-# when 2nd depth is found compare it always to the current max
-# if that 2nd depth is > than cur max then change cur max to/= depth
-# 
-
-# figure out:
-
-# cases:
-# 1. if tree is empty return 0
-# 2. root only then return 1 max is incremented by one
-
-# samples:
-#               *
-#         *          *
-#      *     *    *     *
-#    *   * *   *
-#           *  
-# as left side goes down max is incremented 
-# when left reaches NULL return
-# right side is now proceessed but we see it is still NULL
-# so we return from the function
-# if right is not NULL then we 
+    
 if __name__ == "__main__":
+    # problem:
+
+    # method:
+
+    # idea:
+    # when first depth is found set it as the current max
+    # when 2nd depth is found compare it always to the current max
+    # if that 2nd depth is > than cur max then change cur max to/= depth
+    # 
+
+    # figure out:
+
+    # cases:
+    # 1. if tree is empty return 0
+    # 2. root only then return 1 max is incremented by one
+
+    # samples:
+    #               *
+    #         *          *
+    #      *     *    *     *
+    #    *   * *   *
+    #           *  
+    # as left side goes down max is incremented 
+    # when left reaches NULL return
+    # right side is now proceessed but we see it is still NULL
+    # so we return from the function
+    # if right is not NULL then we 
     parser = ArgumentParser()
     parser.add_argument("--create_method", type=str, default="level-order", help="specifies whether the tree should be created recursively or by level order (breadth)")
     parser.add_argument("--data", nargs="+", default=["1"], help="ex. 1 None 2 None 3 4 5 6 None if 'level-order' is chosen as --create_method, and 1 5 3 1 5 4 10 8 if 'recursive' is chosen as --create_method")

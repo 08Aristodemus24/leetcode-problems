@@ -27,16 +27,16 @@ class LL:
         print(head.data,end=' ')
         self._display(head.link)
 
-    def rreverse(self):
-        self.head=self._rreverse(self.head)
+    def reverse(self):
+        self.head = self._reverse(self.head)
 
-    def _rreverse(self,head):
+    def _reverse(self,head):
         if not head or not head.link:
             return head
 
-        conn=self._rreverse(head.link) # head is returned here
-        head.link.link=head
-        head.link=None
+        conn = self._reverse(head.link) # head is returned here
+        head.link.link = head
+        head.link = None
         return conn
             
             

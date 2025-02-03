@@ -1,131 +1,115 @@
 from random import*
 
 class Node:
-    def __init__(self,data):
-        self.data=data
-        self.next=None
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-class llist:
+class LinkedList:
     def __init__(self):
-        self.front=None
-        self.last=None
+        self.head = None
 
-    def enqueue(self,data):
-        temp=Node(data)
-        if not self.front and not self.last:
-            self.last=temp
-            self.front=self.last
+    def append(self,data):
+        if not self.head:
+            self.head = Node(data)
         else:
-            self.last.next=temp
-            self.last=self.last.next
+            trav = self.head
+            while trav.next:
+                trav = trav.next
+            trav.next = Node(data)
 
     def display(self):
-        # if front is empty that means that queue is empty
-        trav=self.front 
+        trav = self.head
         while trav:
-            print(trav.data,end=' ')
-            trav=trav.next
+            print(trav.data, end=' ')
+            trav = trav.next
 
-    def find(self, head, index):
-        i=0
-        trav=head
-        while i<index:
-            trav=trav.next
-            i+=1
+    def findMid(self, head):
+        fast, slow = head, head
+        while fast and (slow == None or fast.next):
+            fast = fast.next.next
+            slow = slow.next
+        return slow
+
+    def findLast(self, head):
+        trav = head
+        while trav.next:
+            trav = trav.next 
         return trav
-
-    def length(self, head):
-        length=0
-        trav=head
-        while trav:
-            length+=1
-            trav=trav.next
-        return length
-        
-    def mergesort(self,head):
-        # find the last node of the list
-        # and pass it to the funciton as
-        # the higher index node of the list
-        last=self.find(head,self.length(head)-1)
-
-        # call merge sort and pass 
-        self._mergesort(head,last)
     
-    def _mergesort(self,head,last):
-        # find the midpoint number of the list
-        mid=(self.length(head)//2)-1
+    def length(self, head):
+        length = 0
+        trav = head
+        while trav:
+            length += 1
+            trav = trav.next
+        return length
 
-        # return if either head is NULL or if head and last is equal
-        # which indicates that list size down to one
-        if head==last: 
+    def reverse(self):
+        self.head = self._reverse(self.head)
+
+    def _reverse(self,head):
+        if not head or not head.link:
+            return head
+
+        conn = self._reverse(head.link) # head is returned here
+        head.link.link = head
+        head.link = None
+        return conn 
+
+    def mergesort(self, head):
+        last = self.findLast(head)
+        self._mergesort(head, last)
+
+    def _mergesort(self, head, last):
+        if head == last:
             return
-        
-        # find the middle
-        middle=self.find(head,mid)
-        
-        # declare reference to middle.next
-        mid_head=middle.next
 
-        # delete the connection of middle and its link
-        middle.next=None
+        middle = self.findMid(head)
+        mid_next = middle.next
+        middle.next = None
 
-        # process left side from 0 to mid
-        # process right side from mid to last
-        self._mergesort(head,middle) 
-        self._mergesort(mid_head,last) 
+        self._mergesort(head, middle)
+        self._mergesort(mid_next, last)
 
-        # set the 1st pointer to the head
-        # and the 2nd to the middle node
-        trav1=head
-        trav2=mid_head
-
-        # create a class that will use a linked list
-        temp=llist()
+        trav1, trav2 = head, mid_next
+        temp = LinkedList()
         while trav1 and trav2:
-            if trav1.data>trav2.data:
-
-                # append the element in the tem
-                # linked list
-                temp.enqueue(trav2.data) 
-                trav2=trav2.next
+            if trav1.data > trav2.data:
+                temp.append(trav2.data)
+                trav2 = trav2.next
             else:
-                temp.enqueue(trav1.data)
-                trav1=trav1.next
+                temp.append(trav1.data)
+                trav1 = trav1.next
 
-        # append all remaining nodes 
         if trav1:
             while trav1:
-                temp.enqueue(trav1.data)
-                trav1=trav1.next
+                temp.append(trav1.data)
+                trav1 = trav1.next
         else:
             while trav2:
-                temp.enqueue(trav2.data)
-                trav2=trav2.next
+                temp.append(trav2.data)
+                trav2 = trav2.next
         
-        # use the temp list to change all the nodes in
-        # original linked list
-        # connect the middle to the mid head
-        middle.next=mid_head
-
-        trav1=temp.front
-        trav2=head
+        middle.next = mid_next
+        trav1, trav2 = temp.head, head
         while trav1:
-            trav2.data=trav1.data
-            trav1=trav1.next
-            trav2=trav2.next
-        
+            trav2.data = trav1.data
+            trav1 = trav1.next
+            trav2 = trav2.next
+
 if __name__ == "__main__":
-    ll=llist()
-
-    for _ in range(50):
-        ll.enqueue(randint(0,20))
-    ll.mergesort(ll.front)
-
+    ll = LinkedList()
+    ll.append(9)
+    ll.append(6)
+    ll.append(5)
+    ll.append(4)
+    ll.append(1)
+    ll.append(8)
+    ll.display()
+    ll.mergesort(ll.head)
     ll.display()
 
-
-
-
-
-
         
+
+
