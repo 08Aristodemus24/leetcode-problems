@@ -42,7 +42,7 @@ class Queue:
     def traverse(self):
         slow=self.front
         fast=self.front
-        while fast and (slow==None or fast.link): # must always be put in parentheses so condition can automatically end if at least one of the two is false since and is used
+        while fast and (slow == None or fast.link): # must always be put in parentheses so condition can automatically end if at least one of the two is false since and is used
             fast=fast.link.link
             slow=slow.link
         print(slow.data)
