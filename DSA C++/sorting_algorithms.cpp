@@ -3,9 +3,70 @@
 #include <math.h>
 #include <cstring>
 
+void swap(std::vector<int>&arr, int i, int j){
+    // swap elements in array
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
 
-std::vector<int> quicksort(std::vector<int>& arr, int lo, int hi){
-    
+int partition(std::vector<int>& arr, int lo, int hi){
+    // get mid point of arr and use as pivot
+    int pivot = floor((lo + hi) / 2) + 1;
+
+    // swap last element with pivot element
+    swap(arr, pivot, hi);
+    // for(int i = 0; i <= arr.size(); i++){
+    //     std::cout << arr[i] << " ";
+    // }
+    // std::cout << "\n";
+
+    // set j pointer to second to the last element right next to
+    // the element we just made our pivot
+    int i = lo, j = hi - 1;
+
+    while(i <= j){
+        if(arr[i] >= arr[hi] && arr[j] < arr[hi]){
+            swap(arr, i, j);
+            i++;
+            j--;
+
+        }else if(arr[i] >= arr[hi] && arr[j] >= arr[hi]){
+            j--;
+
+        // i pointers value is already in the left partition where
+        // it's supposed to be but j pointer needs to be swapped but
+        // we can't swap it with i so we need to move i pointer to the
+        // right side once to provide incentive for j pointer to swap 
+        // with i pointer value
+        }else if(arr[i] < arr[hi] && arr[j] < arr[hi]){
+            i++;
+
+        }else{
+            i++;
+            j--;
+        }
+    }
+
+    // swap pivot element located in [hi] and swap with i
+    swap(arr, i, hi);
+
+    // return new position of fixed pivot element
+    return i; 
+}
+
+void quicksort(std::vector<int>& arr, int lo, int hi){
+    // if lo is greater than or equal hi, means array length reached 1
+    if(lo < hi){
+        int fixed = partition(arr, lo, hi);
+        // std::cout << fixed << "\n";
+
+        // process sorted left side of pivot 
+        quicksort(arr, lo, fixed - 1);
+
+        // process sorted right side of pivot 
+        quicksort(arr, fixed + 1, hi);
+    }
 }
 
 std::vector<int> slice(std::vector<int>& arr, int X, int Y){
@@ -90,7 +151,7 @@ std::vector<int> mergesort(std::vector<int>& arr, int lo, int hi){
 // compile using: g++ mergesort.cpp -o mergesort
 int main(int argc, char** argv){
     // declare needed variables 
-    std::vector<int> arr = {2, 2, 10, 9, 5, -1, 0, 1, 3, 4, -10};
+    std::vector<int> arr = {2, 2, 10};
     int lo = 0, hi = arr.size() - 1;
 
     // sorter
@@ -99,21 +160,29 @@ int main(int argc, char** argv){
     // if chosen sorter is mergesort assign sorter to mergesort callback
     
     if(!strcmp(argv[1], "mergesort")){
-        sorter = &mergesort;
+        // sorter = &mergesort;
+        
+        // initial prompt
+        std::cout << "running " << argv[1] << "\n";
+
+        // sort array
+        std::vector<int> new_arr = mergesort(arr, lo, hi);
+        for(int i = 0; i < new_arr.size(); i++){
+            std::cout << new_arr[i] << " ";
+        }
 
     }else if(!strcmp(argv[1], "quicksort")){
-        sorter = &quicksort;
+        // sorter = &quicksort;
 
+        // initial prompt
+        std::cout << "running " << argv[1] << "\n";
+
+        // sort array inplace
+        quicksort(arr, lo, hi);
+        for(int i = 0; i < arr.size(); i++){
+            std::cout << arr[i] << " ";
+        }
     }
-    
-    // initial prompt
-    std::cout << "running " << argv[1] << "\n";
-
-    // sort array
-    // std::vector<int> new_arr = sorter(arr, lo, hi);
-    // for(int i = 0; i < new_arr.size(); i++){
-    //     std::cout << new_arr[i] << " ";
-    // } 
     
     return 0;
 }
