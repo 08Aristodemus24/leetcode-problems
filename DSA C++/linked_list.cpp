@@ -23,6 +23,10 @@ class LinkedList{
         // unlike in python, or javascript
         Node* head;
 
+        void _reverse(){
+
+        }
+
     public:
         LinkedList(){
             head = NULL;
@@ -184,6 +188,11 @@ class LinkedList{
                 temp = temp->next;
             }
             std::cout << "NULL" << std::endl; 
+        }
+
+        void reverse(){
+            // this will be called recursively
+            _reverse();
         }
 };
 
