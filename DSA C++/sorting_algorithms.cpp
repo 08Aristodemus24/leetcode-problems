@@ -136,7 +136,11 @@ std::vector<int> mergesort(std::vector<int>& arr, int lo, int hi){
             val = e_right_arr[r];
             final_arr.push_back(val);
         }
-        
+
+    // this si if there are left over elements in the left partition
+    // which we know is controlled by pointer i. Recall why i is a
+    // pointer because [i] is just *(arr + i) where we use the address of
+    // the array and add i then dereference it to get the value  
     }else{
         for(int l = i; l <= mid - 1; l++){
             val = e_left_arr[l];
