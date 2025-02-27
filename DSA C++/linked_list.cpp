@@ -231,11 +231,11 @@ class LinkedList{
 int main(int argc, char** argv){
     // this is equivalent to LinkedList ll = new LinkedList();
     LinkedList ll;
-    // ll.insertAtEnd(1);
-    // ll.insertAtEnd(2);
-    // ll.insertAtEnd(3);
-    // ll.insertAtEnd(4);
-    // ll.insertAtEnd(5);
+    ll.insertAtEnd(1);
+    ll.insertAtEnd(2);
+    ll.insertAtEnd(3);
+    ll.insertAtEnd(4);
+    ll.insertAtEnd(5);
     ll.display();
     ll.reverse();
     ll.display();
