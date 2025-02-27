@@ -191,20 +191,53 @@ class LinkedList{
         }
 
         void reverse(){
+            if(!head){
+                return;
+            }
             // this will be called recursively
-            _reverse();
+
+            // we will have 3 pointers which will initially
+            // be set to null, head, and head->next respectively 
+            Node* prev = NULL;
+            Node* curr = head;
+            Node* next = head->next;
+
+            // we run a while loop 
+            while(curr->next != NULL){
+                // set the current nodes pointer to
+                // point to the previous node
+                curr->next = prev;
+
+                // then after setting it we move
+                // all three pointers once to the right
+                prev = curr;
+                curr = next;
+                next = next->next;
+            }
+            // however if curr has already reached the last node we cannot
+            // anymore set next to next->next as it will raise an error
+            // so we curr's pointer to the previous node to complete the task of 
+            // having it be the new head node 
+            curr->next = prev;
+            
+            // finally we set head to the new head which would be the current
+            // node having set its pointer to the previous node
+            head = curr;
         }
 };
 
 
 
 int main(int argc, char** argv){
+    // this is equivalent to LinkedList ll = new LinkedList();
     LinkedList ll;
-    ll.insertAtEnd(1);
-    ll.insertAtEnd(2);
-    ll.insertAtEnd(3);
-    ll.insertAtEnd(4);
-    ll.insertAtEnd(5);
+    // ll.insertAtEnd(1);
+    // ll.insertAtEnd(2);
+    // ll.insertAtEnd(3);
+    // ll.insertAtEnd(4);
+    // ll.insertAtEnd(5);
+    ll.display();
+    ll.reverse();
     ll.display();
 
     return 0;
