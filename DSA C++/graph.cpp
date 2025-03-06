@@ -1,6 +1,5 @@
+#include <iostream>
 
-
-https://www.geeksforgeeks.org/print-all-shortest-paths-between-given-source-and-destination-in-an-undirected-graph/
 class Graph{
     private:
         char board[15][15] = {
@@ -22,16 +21,32 @@ class Graph{
         };
 
     public:
+        int m; 
+        int n;
         Graph(){
             // dimensions of graph
-            int m = board.size();
-            int n = board[0].size(); 
+            m = sizeof(board) / sizeof(board[0]);
+            n = sizeof(board[0]) / sizeof(board[0][0]);
         }
 
         int findShortestPath(){
-
+            /*
+            Given a 15x15 board with cells '0' (open path), '1' (obstacle), 'X’ (starting point), 
+            and 'FLAG' (destination), make a python code that will find the shortest path from a 
+            start cell (‘X') to 'FLAG. Output should be the coordinates of the 'X' with the 
+            shortest path to 'FLAG’.
+            */
+            std::cout << m << " " << n;
         }
 };
+
+
+int main(int argc, char** argv){
+    Graph g;
+    g.findShortestPath();
+
+    return 0;
+}
 
 // class Graph:
 //     def __init__(self):
@@ -54,12 +69,7 @@ class Graph{
         // ]
 
 //     def findShortestPath(self):
-//         """
-//         Given a 15x15 board with cells '0' (open path), '1' (obstacle), 'X’ (starting point), 
-//         and 'FLAG' (destination), make a python code that will find the shortest path from a 
-//         start cell (‘X') to 'FLAG. Output should be the coordinates of the 'X' with the 
-//         shortest path to 'FLAG’.
-//         """
+//         
 
 //         # X can have multiple starting points
 //         xs = self.findXs()

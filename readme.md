@@ -1,6 +1,13 @@
 # This repository will contain all of my solved leetcode problems ranging from arrays, dynamic programming, backtracking, stacks, queues, trees, graphs, strings, greedy algorithms
 
+# Articles, Videos, Papers:
+* shortest path in a binary maze (close to interview questions): https://www.geeksforgeeks.org/shortest-path-in-a-binary-maze/
+* dijkstras algorithm: https://www.geeksforgeeks.org/print-all-shortest-paths-between-given-source-and-destination-in-an-undirected-graph/
+* search the maze usiing depth first search: https://www.youtube.com/watch?v=W9F8fDQj7Ok&list=PLCBT00GZN_SAzwTS-SuLRM547_4MUHPuM&index=2&pp=gAQBiAQB
+* find shortest path in grid using breadth first search (close to interview questions): https://www.youtube.com/watch?v=KiCBXu4P-2Y&list=PLCBT00GZN_SAzwTS-SuLRM547_4MUHPuM&index=3&pp=gAQBiAQB
+
 # Data Structures & algorithms
+
 
 # SQL
 ## Exchange Seats
