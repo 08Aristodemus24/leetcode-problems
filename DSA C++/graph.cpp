@@ -195,7 +195,12 @@ class Graph{
 
             std::cout << "end coordinates: (" << end[0] << ", " << end[1] << ")" << "\n";
             
-            
+            // all that's left here is to count the number of moves it takes for the
+            // bfs algorithm to get to the end node in order to determine the shortest
+            // path and to determine the shorteest path we need to define an initial max value
+            // to compare our first paths length, once teh shortest path is determined we
+            // retrace all the nodes in this path and return its path, the number of moves, 
+            // and the start node with this shortest path
         }
 
         
