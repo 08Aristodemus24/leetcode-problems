@@ -38,12 +38,11 @@ def print_star(levels: int=10):
         # print nextline
         print()
 
-    print('\n')
-
     # this prints a triangle not leaning
     #   /|
     #  / |
     # /__|
+    print('\n')
     for i in range(1, n + 1):
         # we print the spaces going from
         # n - 1 = 9
@@ -64,7 +63,6 @@ def print_star(levels: int=10):
         # print a newline for every new line of stars
         print()
 
-    print('\n')
     # prints a this triangle
     # ____
     # \   |
@@ -77,6 +75,7 @@ def print_star(levels: int=10):
     # 2 stars, 3 spaces
     # 1 star, 4 spaces
 
+    print('\n')
     for i in range(n, 0, -1):
         # print spaces first
         # 5 - 5 = 0 spaces
@@ -84,8 +83,8 @@ def print_star(levels: int=10):
         # 5 - 3 = 2 spaces
         # 5 - 2 = 3 spaces
         # 5 - 1 = 4 spaces
-        for j in range(n - i):
-            print(" ", end="")
+        # for j in range(n - i):
+        print(" " * (n - i), end="")
 
         # print the stars second
         # 5 - 0
@@ -108,6 +107,137 @@ def print_star(levels: int=10):
     # 00*** **000
     # 000** *0000
     # 0000* 00000
+
+    # for first outer loop
+    # 4 spaces 1 star 0 star 5 spaces
+    # 3 spaces 2 stars 1 star 4 spaces
+    # 2 spaces 3 stars 2 stars 3 spaces
+    # 1 spaces 4 stars 3 stars 2 spaces
+    # 0 spaces 5 stars 4 stars 1 spaces
+
+    # for second outer loop
+    # 0 spaces 5 stars 4 stars 1 space
+    # 1 spaces 4 stars 3 stars 2 space
+    # 2 spaces 3 stars 2 stars 3 space
+    # 3 spaces 2 stars 1 stars 4 space
+    # 4 spaces 1 stars 0 stars 5 space
+
+    print('\n')
+    for i in range(n):
+        # pattern for first set of spaces
+        # 5 - (0 + 1) = 4
+        # 5 - (1 + 1) = 3
+        # ...
+        # 5 - (4 + 1) = 0
+        print(" " * (n - (i + 1)), end="")
+
+        # pattern for stars
+        print("*" * (i + 1), end="")
+        print("*" * i, end="")
+        # print("*" * (i + (i + 1)), end="")
+
+        # pattern for second set of spaces
+        print(" " * (n - i), end="")
+
+        # for newline
+        print()
+
+    # for second outeer loop
+    for i in range(1, n):
+        # pattern for first set of spaces
+        # 0, 1, ..., 4
+        print(" " * i, end="")
+
+        # pattern for stars
+        # 5 - 0 = 5
+        # 5 - 1 = 4
+        # ...
+        # 5 - 4 = 1
+        print("*" * (n - i), end="")
+
+        # 5 - (0 + 1) = 4
+        # 5 - (1 + 1) = 3
+        # ...
+        # 5 - (4 + 1) = 0
+        print("*" * (n - (i + 1)), end="")
+
+        # pattern for second set of spaces
+        print(" " * (i + 1), end="")
+
+        # for newline
+        print()
+
+    # this can be the first method of doing a an hourglass
+    # ***** ****0
+    # 0**** ***00
+    # 00*** **000
+    # 000** *0000
+    # 0000* 00000
+
+    # 0000* 00000 
+    # 000** *0000
+    # 00*** **000
+    # 0**** ***00
+    # ***** ****0
+
+    # for first outer loop
+    # 0 spaces 5 stars 4 stars 1 space
+    # 1 spaces 4 stars 3 stars 2 space
+    # 2 spaces 3 stars 2 stars 3 space
+    # 3 spaces 2 stars 1 stars 4 space
+    # 4 spaces 1 stars 0 stars 5 space
+
+    # for second outer loop
+    # 4 spaces 1 star 0 star 5 spaces
+    # 3 spaces 2 stars 1 star 4 spaces
+    # 2 spaces 3 stars 2 stars 3 spaces
+    # 1 spaces 4 stars 3 stars 2 spaces
+    # 0 spaces 5 stars 4 stars 1 spaces
+
+    print('\n')
+    for i in range(n):
+        # pattern for first set of spaces
+        # 0, 1, ..., 4
+        print(" " * i, end="")
+
+        # pattern for stars
+        # 5 - 0 = 5
+        # 5 - 1 = 4
+        # ...
+        # 5 - 4 = 1
+        print("*" * (n - i), end="")
+
+        # 5 - (0 + 1) = 4
+        # 5 - (1 + 1) = 3
+        # ...
+        # 5 - (4 + 1) = 0
+        print("*" * (n - (i + 1)), end="")
+
+        # pattern for second set of spaces
+        print(" " * (i + 1), end="")
+
+        # for newline
+        print()
+
+    for i in range(1, n):
+        # pattern for first set of spaces
+        # 5 - (0 + 1) = 4
+        # 5 - (1 + 1) = 3
+        # ...
+        # 5 - (4 + 1) = 0
+        print(" " * (n - (i + 1)), end="")
+
+        # pattern for stars
+        print("*" * (i + 1), end="")
+        print("*" * i, end="")
+        # print("*" * (i + (i + 1)), end="")
+
+        # pattern for second set of spaces
+        print(" " * (n - i), end="")
+
+        # for newline
+        print()
+
 
     # this can be the second or more efficient method of doing a hill and an inverted hill
     # 0000*
@@ -193,7 +323,6 @@ def print_star(levels: int=10):
     # 0 spaces 5 stars
     
     print('\n')
-
     for i in range(n):
         # 0, 1, 2, 3, 4 spaces 
         print(" " * i, end="")
@@ -220,7 +349,7 @@ def print_star(levels: int=10):
             # 01 < 2
             # ...
             # 01234 < 5
-            print("*", end="")
+            print("*", end=" ")
         print()
 
 
