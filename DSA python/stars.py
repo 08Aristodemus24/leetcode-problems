@@ -220,7 +220,7 @@ def print_star(levels: int=10):
             # 01 < 2
             # ...
             # 01234 < 5
-            print("*", end=" ")
+            print("*", end="")
         print()
 
 
